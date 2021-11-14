@@ -1,5 +1,5 @@
 import Home from "./pages/home/Home";
-import './app.scss'
+import "./app.scss";
 import Watch from "./pages/watch/Watch";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
@@ -9,9 +9,9 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-
+import { LoginProvider } from "./contexts/LoginContext";
 const App = () => {
-  const user = true
+  const user = true;
   return (
     <Router>
       <Switch>
@@ -21,29 +21,24 @@ const App = () => {
         <Route path="/register">
           {!user ? <Register /> : <Redirect to="/" />}
         </Route>
-        <Route path="/login">
-          {!user ? <Login /> : <Redirect to="/" />}
-        </Route>
+        <Route path="/login">{!user ? <Login /> : <Redirect to="/" />}</Route>
 
-        {user && 
-          (
-            <>
-              <Route path="/movies">
-                <Home type="Movie" />
-              </Route>
-              <Route path="/series">
-                <Home type="Series" />
-              </Route>
-              <Route path="/watch">
-                <Watch />
-              </Route>
-            </>
-          )
-        }
-        
+        {user && (
+          <>
+            <Route path="/movies">
+              <Home type="Movie" />
+            </Route>
+            <Route path="/series">
+              <Home type="Series" />
+            </Route>
+            <Route path="/watch">
+              <Watch />
+            </Route>
+          </>
+        )}
       </Switch>
     </Router>
-  )
+  );
 };
 
 export default App;

@@ -1,7 +1,14 @@
 import { useRef, useState } from 'react'
 import './register.scss'
 
+import { LoginContext } from '../../contexts/LoginContext'
+import { useContext } from "react";
+
+
+
 export default function Register() {
+    const [user, setUser] = useContext(LoginContext)
+
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
